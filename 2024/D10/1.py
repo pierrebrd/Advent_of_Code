@@ -16,6 +16,9 @@ for row_index, row in enumerate(map):
         if number == 0:
             zero_indexes.append((row_index, col_index))
 
+# I used DFS instead of BFS.
+# BFS can be implemented with a queue and a loop where you dequeue while queue is not empty
+
 
 def explore_around(map, current_height, current_x, current_y, nine_indexes):
     if current_height == 9:
