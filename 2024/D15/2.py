@@ -1,4 +1,7 @@
 # After a long time of debugging, my code works, but it is horrible. I should have better handled the dependecies between the boxes.
+# Some workaround seen on reddit :
+# - Make a backup of the map : if some push become invalid, restore the map
+# - Use two separates fonctions, one to check if a push is valid and appending the move to a list, and another one to make the pushes when the are valid
 
 
 import copy
@@ -24,19 +27,21 @@ for i in range(len(map)):
             newline += ["[", "]"]
     map[i] = newline
 
-count1 = 0
-count2 = 0
-count3 = 0
-for line in map:
-    for char in line:
-        if char == "[":
-            count1 += 1
-        if char == "]":
-            count2 += 1
-        if char == "#":
-            count3 += 1
+# Debugging
 
-print(count1, count2, count3)
+# count1 = 0
+# count2 = 0
+# count3 = 0
+# for line in map:
+#     for char in line:
+#         if char == "[":
+#             count1 += 1
+#         if char == "]":
+#             count2 += 1
+#         if char == "#":
+#             count3 += 1
+
+# print(count1, count2, count3)
 
 
 def print_map():
@@ -146,6 +151,7 @@ def move_box(moved_list, move, x, y):
                     moved_list.append((x, y))
                     return True
                 else:
+                    # Buggy and not needed
                     # moved_list.remove((x + i, y - 1))
                     # if move == "^":
                     #     move_box(moved_list, "v", x + 2 * i, y - 1)
@@ -250,8 +256,9 @@ okay = True
 
 for i in range(len(moves)):
     move = moves[i]
-
     x, y = try_move(move, x, y)
+
+    # Debugging
 
     # if okay == False:
     #     print_map()
@@ -296,6 +303,8 @@ def score_p1(map):
 
 print(score_p1(map))
 
+
+# Debugging
 count1 = 0
 count2 = 0
 count3 = 0
